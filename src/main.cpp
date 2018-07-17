@@ -1391,6 +1391,8 @@ int64_t GetProofOfStakeReward(const CBlockIndex* pindexPrev, int64_t nCoinAge, i
         }else{
             nSubsidy = 10 * COIN;
         }
+    } else if(GetAdjustedTime() >= 1531875600 && GetAdjustedTime() <= 1532134800){
+      nSubsidy = 50 * COIN;
     } else{
       nSubsidy = 0 * COIN;
     }
