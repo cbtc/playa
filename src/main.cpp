@@ -47,10 +47,10 @@ set<pair<COutPoint, unsigned int> > setStakeSeen;
 
 CBigNum bnProofOfStakeLimit(~uint256(0) >> 20);
 
-unsigned int nStakeMinAge = 12 * 60 * 60; // 12 hours
+unsigned int nStakeMinAge = 2 * 60; // 12 hours
 unsigned int nModifierInterval = 240; // time to elapse before new modifier is computed
 
-int nCoinbaseMaturity = 29;
+int nCoinbaseMaturity = 3;
 CBlockIndex* pindexGenesisBlock = NULL;
 int nBestHeight = -1;
 
@@ -1375,7 +1375,7 @@ int64_t GetProofOfStakeReward(const CBlockIndex* pindexPrev, int64_t nCoinAge, i
 {
     int64_t nSubsidy = 0;
 
-    if(nBestHeight >= 5401){
+    if(nBestHeight >= 20){
         if(nBestHeight % 3 == 0){
             if(nBestHeight % 5 == 0){
                 nSubsidy = 24 * COIN;
@@ -4511,15 +4511,15 @@ int64_t GetMasternodePayment(int nHeight, int64_t blockValue)
     int64_t ret;
     if(nBestHeight % 3 == 0){
         if(nBestHeight % 5 == 0){
-            ret = blockValue * (100 * 17 / 24);
+            ret = blockValue * 17 / 24;
         } else{
-            ret = blockValue * (100 * 14 / 19);
+            ret = blockValue * 14 / 19;
         }
     } else if(nBestHeight % 5 == 0){
         if(nBestHeight % 3 == 0){
-            ret = blockValue * (100 * 17 / 24);
+            ret = blockValue * 17 / 24;
         }else{
-            ret = blockValue * (100 * 9 / 13);
+            ret = blockValue * 9 / 13;
         }
     } else{
         ret = blockValue * 7 / 10;
