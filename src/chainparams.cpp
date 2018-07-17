@@ -57,10 +57,18 @@ public:
 		// The message start string is designed to be unlikely to occur in normal data.
 		// The characters are rarely used upper ASCII, not valid as UTF-8, and produce
 		// a large 4-byte int at any alignment.
-		pchMessageStart[0] = 0x69;
-		pchMessageStart[1] = 0xfa;
-		pchMessageStart[2] = 0xcc;
-		pchMessageStart[3] = 0xfb;
+		if (chainActive.Height() <= 5400) {
+			pchMessageStart[0] = 0x69;
+			pchMessageStart[1] = 0xfa;
+			pchMessageStart[2] = 0xcc;
+			pchMessageStart[3] = 0xfb;
+		}
+		else {
+			pchMessageStart[0] = 0x4c;
+			pchMessageStart[1] = 0xaf;
+			pchMessageStart[2] = 0x2c;
+			pchMessageStart[3] = 0xe9;
+		}
 		vAlertPubKey = ParseHex("04accc420eabbb8a7106385003fef77896538a382a0dcc389ff45f3c98751d9af423a066689757666259351198a8a2a628a1fd644c3232678c5845384c744ff8d7");
 		nDefaultPort = 10060;
 		nRPCPort = 10061;
