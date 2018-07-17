@@ -74,7 +74,12 @@ public:
 		//    CTxIn(COutPoint(0000000000, 4294967295), coinbase 00012a24323020466562203230313420426974636f696e2041544d7320636f6d6520746f20555341)
 		//    CTxOut(empty)
 		//  vMerkleTree: 59589791e1
-		const char* pszTimestamp = "White House Sees U.S. Winning Trade War With China";
+		if (chainActive.Height() <= 5400) {
+			const char* pszTimestamp = "White House Sees U.S. Winning Trade War With China";
+		}
+		else {
+			const char* pszTimestamp = "new message";
+		}
 		std::vector<CTxIn> vin;
 		vin.resize(1);
 		vin[0].scriptSig = CScript() << 0 << CBigNum(42) << vector<unsigned char>((const unsigned char*)pszTimestamp, (const unsigned char*)pszTimestamp + strlen(pszTimestamp));
